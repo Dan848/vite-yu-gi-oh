@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <CardUnit v-for="(card, index) in store.allCards" :key="card.id" :image="card.card_images[0].image_url_small" :name="card.name" :archetype="card.archetype"/>
+            <CardUnit v-for="(card, index) in store.allCards" :key="card.id" :image="card.card_images[0].image_url" :name="card.name" :archetype="card.archetype"/>
         </div>
         
     </div>
