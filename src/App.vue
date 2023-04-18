@@ -25,7 +25,12 @@
     methods: {
       getAllCards() {
         axios.get(store.apiUrl).then((res) => {
-          store.allCards = res.data.data
+          store.allCards = res.data.data.map((card) => {
+            return {
+              ...card,
+              archetype: card.archetype || "Undefined"
+            }
+          });
           console.log(store.allCards)
         })
       }
