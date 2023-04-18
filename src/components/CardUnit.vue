@@ -1,11 +1,16 @@
 <template>
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-            <div class="image">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column align-items-center">
+        <div class="card-box mb-4">
+            <div>
                 <img :src="image" :alt="name">
             </div>
-            <div class="text">
-                {{ name }}
+            <div class="card-box-text text-center d-flex flex-column justify-content-between pt-3">
+                <div class="fw-bold text-white">
+                    {{ name }}
+                </div>
+                <div class="fw-medium">
+                    {{ archetype }}
+                </div>
             </div>
         </div>
     </div>
@@ -17,7 +22,8 @@
         name: "CardUnit",
         props: {
             image: String,
-            name: String
+            name: String,
+            archetype: String
         }, 
         data(){
             return {
@@ -28,5 +34,12 @@
 </script>
 
 <style lang="scss" scoped>
+    .card-box{
+        max-width: 168px;
+        .card-box-text{
+            background-color: #d48f38;
+            height: 115px
+        }
 
+    }
 </style>
