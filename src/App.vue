@@ -1,7 +1,7 @@
 :<template>
     <AppHeader />
     <main class="px-md-5 px-sm-4 px-0">
-      <FilterSelect />
+      <FilterSelect @onGetCards="getAllCards"/>
       <CardList />
     </main>
     
@@ -26,19 +26,56 @@
       }
     },
     methods: {
-      getAllCards() {
-        store.loading = true
-        axios.get(store.apiCardsUrl).then((res) => {
-          store.allCards = res.data.data.map((card) => {
+      getCardsShowed() {
+        let options = {};
+        let params = {};
+        //Populate the search object
+        for (let key in store.search) {
+          if (store.search[key]) {
+            params[key] = store.search[key];
+          }
+        }
+
+        if (Object.keys(params).length > 0) {
+          options.params = params
+        }
+
+        //Cards Showed
+        axios.get(store.apiCardsUrl, options).then((res) => {
+          store.allCardsShowed = res.data.data.map((card) => {
             return {
               ...card,
               archetype: card.archetype || "Undefined"
             }
-          });
-          store.loading = false
-          console.log(store.allCards)
+          });  
         })
+      },
+
+      getAllCards() {
+        store.loading.true
+        let info = {};
+
+        if (store.search.archetype) {
+          info = {
+            params: {
+              archetype: store.search.archetype
+            }
+          }
+        }
+
+        //Full Cards
+        axios.get(store.apiCardsUrl, info).then((res) => {
+          store.allCards = res.data.data
+        })
+
+        this.getCardsShowed();
+        store.loading = false
       }
+    },
+    computed:{
+      calcPages () {
+        return Math.ceil(store.allCards.length / store.search.num)
+      },
     },
     mounted() {
       this.getAllCards()
