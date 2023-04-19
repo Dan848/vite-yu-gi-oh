@@ -1,6 +1,6 @@
 <template>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column align-items-center">
-        <div class="card-box mb-4">
+        <div class="card-box mb-4 py-5">
             <div>
                 <img class="img-fluid" :src="image" :alt="name">
             </div>
@@ -27,22 +27,24 @@
         }, 
         data(){
             return {
-                store
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .card-box{
-        max-width: 168px;
-        .card-box-text{
-            background-color: #d48f38;
-            height: 115px;
-            div.pb-1{
-                font-weight: 500;
+    .col-12{
+        background-color: #fff;
+        .card-box{
+            max-width: 168px;
+            .card-box-text{
+                background-color: #d48f38;
+                height: 115px;
+                div.pb-1{
+                    font-weight: 500;
+                }
             }
-        }
 
+        }
     }
 </style>
