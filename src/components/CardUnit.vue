@@ -37,7 +37,7 @@
         max-width: 168px;
         .card-box-text{
             background-color: #d48f38;
-            height: 115px;
+            height: 135px;
             div.pb-1{
                 font-weight: 500;
             }

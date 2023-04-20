@@ -31,7 +31,7 @@
         let params = {};
         //Populate the search object
         for (let key in store.search) {
-          if (store.search[key]) {
+          if (store.search[key] || key === "offset") {
             params[key] = store.search[key];
           }
         }
@@ -42,12 +42,14 @@
 
         //Cards Showed
         axios.get(store.apiCardsUrl, options).then((res) => {
+          store.totalPages = res.data.meta.total_pages;
+          store.cardFounded = res.data.meta.total_rows;
           store.allCardsShowed = res.data.data.map((card) => {
             return {
               ...card,
               archetype: card.archetype || "Undefined"
             }
-          });  
+          });
         })
       },
 
@@ -70,13 +72,14 @@
 
         this.getCardsShowed();
         store.loading = false
-      }
-    },
-    computed:{
-      calcPages () {
-        return Math.ceil(store.allCards.length / store.search.num)
       },
+
+
     },
+
+    computed:{
+    },
+
     mounted() {
       this.getAllCards()
     }  
@@ -84,7 +87,4 @@
 </script>
 
 <style lang="scss" scoped>
-  main {
-    background-color: #d48f38;
-  }
 </style>

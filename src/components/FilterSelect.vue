@@ -1,6 +1,7 @@
 <template>
     <div class="container py-4 fw-bolder">
         <div class="row justify-content-between">
+            <!-- Select Archetype -->
             <div class="col-12 col-md-4">
                 <label for="selectArchetype">Search By Archetype</label>
                 <select name="selectArchetype" id="selectArchetype" v-model="store.search.archetype" @change="updateCards">
@@ -8,16 +9,14 @@
                     <option :value="archetype.archetype_name" v-for="(archetype, index) in allArchetypes" :key="index">{{ archetype.archetype_name }}</option>
                 </select>
             </div>
+            <!-- Card Counter -->            
             <div class="col-12 col-md-4 d-flex justify-content-center align-items-center text-white">
-                Card Founded {{ store.allCards.length }}
+                Card Founded {{ store.cardFounded }}
             </div>
+            <!-- Cards Show Select -->            
             <div class="col-12 col-md-4 d-flex justify-content-evenly align-items-center">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    <label for="selectPages">Page</label>
-                    <select name="selectPages" id="selectPages" v-model="store.search.offset" @change="updateCards">
-                        <option :value="page" v-for="(page, index) in store.pageNumber" :key="index">{{ page }}</option>
-                    </select>
-                </div>
+
+                <!-- Cards For Page -->                
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <label for="selectNums">Cards for Page</label>
                     <select name="selectNums" id="selectNums" v-model="store.search.num" @change="updateCards">
